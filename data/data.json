@@ -1,0 +1,37 @@
+
+ [
+    {
+         "id":"01",
+         "name": "top 1",
+         "price": "2600",
+         "stock": "0",
+         "imgSrc": "./img/p1.jpg",
+         "description" : "PROXIMAMENTE"
+       
+ 
+     },
+     {
+        "id":"02",
+        "name": "top 1",
+        "price": "2000",
+        "stock": "0",
+        "imgSrc": "./img/p2.jpg",
+        "description" : "PROXIMAMENTE"
+      
+
+    },
+    {
+        "id":"03",
+        "name": "top 1",
+        "price": "2600",
+        "stock": "0",
+        "imgSrc": "./img/p3.jpg",
+        "description" : "PROXIMAMENTE"
+      
+
+    }
+]
+
+
+   
+   
