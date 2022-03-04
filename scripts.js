@@ -1,10 +1,10 @@
 
-  let abrir = $("#abrir-modal");  //DESAFIO 12 Y EVENTOS
+  let abrir = $("#abrir-modal");  
   let cerrar = $("#cerrar-modal");
   let modal = $(".modal-container");
-  $( ".bannerArriba" ).prepend( "<p>6 CUOTAS SIN INTERES EN TODOS LOS LOCALES </p>" );  //.prepend
+  $( ".bannerArriba" ).prepend( "<p>6 CUOTAS SIN INTERES EN TODOS LOS LOCALES </p>" ); 
   abrir.click(function () {
-    modal.addClass("modal-active");   //desafio JQUERY
+    modal.addClass("modal-active");   
   });
 
   cerrar.click(function () {
@@ -21,7 +21,7 @@ const totalItemsInCartEl = document.querySelector(".total-items-in-cart");
 
     
     
-function renderProducts(){                                              //DESAFIO GENERAR HTML
+function renderProducts(){                                            
     products.forEach ( (product)=> {
 
        ( productsEl).innerHTML += `<div class ="item"> 
@@ -38,32 +38,16 @@ function renderProducts(){                                              //DESAFI
     <div class="add-to-wishlist" onclick="wishlist(${product.id})" >
         <img src="./icons/heart.png" alt="favoritos">
     </div>
-    <div class="add-to-cart" onclick="addToCart(${product.id})"  >
+    <div class="add-to-cart" onclick="addToCart(${product.id})" onclick="animacion (id)"  >
         <img src="./icons/bag-plus.png" alt="agregar al carrito">
     </div>
 </div>
 </div>
 
          `
-        
- 
-     
-      
-     });
-     $(".add-to-cart").click(function animacion () {
-
-        $(".add-to-cart").animate({ opacity: 'toggle',
-        top: '+=100',
-         },
-        "slow",
-        function () { $(this).removeAttr('style'); });
-
-
-        }) 
-        ;
-}
-
- //Declaramos la url que vamos a usar para el GET
+    })};
+         
+    
     
  renderProducts()
 
@@ -88,7 +72,8 @@ function renderProducts(){                                              //DESAFI
      
     }
     carritoNuevo()
- 
+
+   
 
     }
 
@@ -137,13 +122,12 @@ function renderSubtotal(){
        }
 
     
-      
-
+     
        function cambiarUnidades (action,id) {
         let carritoActual= carrito.map ((item) => {
             let cantUnidades = item.units
            if (item.id === id) {
-               if (action === "menos" && cantUnidades>1) {
+               if (action === "menos" && cantUnidades>0) {
                     console.log( [{... item, units : item.units-- - 1}]);
                 }
                 else if (action === "mas" && cantUnidades<item.stock) {
@@ -156,6 +140,24 @@ function renderSubtotal(){
          })
          carritoNuevo()
      } ;
+
+     function sacarDelCarrito (id)
+     {
+     carrito =  carrito.filter ((item)=> item.id !== id);
+
+     carritoNuevo()
+     }
+
+     let Arrwishlist = [];
+     function wishlist (id) {
+
+        
+         let item = products.find((product)=>product.id=== id);
+         Arrwishlist.push(item.name);
+         console.log (Arrwishlist)
+
+     }
+
     
      let container = $('#21')
      let URLJSON = "data/data.json"
@@ -163,7 +165,9 @@ function renderSubtotal(){
         $("#adelanto").prepend('<button id="btn1" class = "btn1">  VER ADELANTOS </button>');
 
         $("#btn1").click( () =>
-        {    $.getJSON(URLJSON, function (respuesta,estado) {
+        
+        {  $( ".btn1" ).remove();
+          $.getJSON(URLJSON, function (respuesta,estado) {
             if (estado ==="success") {
                 let misDatos = respuesta;
                 console.log(misDatos);
@@ -194,4 +198,5 @@ function renderSubtotal(){
             )
         });
         
-    
+    /* Para eliminar un producto del carrito de forma definitiva, hay que apretar sobre su imagen */ 
+    /* Como la funcion de VER ADELANTOS, se hace con AJAX en un archivo local, no corre bien en Chrome, por un parche de seguridad. En firefox, que no tiene ese parche, se ve la funcion.*/
